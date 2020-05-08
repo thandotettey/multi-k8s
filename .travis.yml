@@ -1,0 +1,25 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  # uses dev code assets to run tests
+  - docker build -t thandotettey/react-test -f ./client/Dockerfile.dev ./client
+
+scripts:
+  - docker run -e CI=true thandotettey/react-test npm test
+
+after_success:
+  - docker build -t thandotettey/multi-client -f ./client
+  - docker build -t thandotettey/multi-nginx ./nginx
+  - docker build -t thandotettey/multi-server ./server
+  - docker build -t thandotettey/multi-worker ./worker
+
+  #Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take these images and push them to docker hub repo
+  - docker push thandotettey/multi-client
+  - docker push thandotettey/multi-nginx
+  - docker push thandotettey/multi-server
+  - docker push thandotettey/multi-worker

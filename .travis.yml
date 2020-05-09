@@ -11,7 +11,7 @@ scripts:
   - docker run -e CI=true thandotettey/react-test npm test
 
 after_success:
-  - docker build -t thandotettey/multi-client -f ./client
+  - docker build -t thandotettey/multi-client ./client
   - docker build -t thandotettey/multi-nginx ./nginx
   - docker build -t thandotettey/multi-server ./server
   - docker build -t thandotettey/multi-worker ./worker

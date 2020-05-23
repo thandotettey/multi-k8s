@@ -18,8 +18,9 @@ before_install:
   - kubectl version --short --client
   - kubectl config set-context ${AWS_USER} --cluster=${AWS_CLUSTER} --user=${AWS_USER}
   - kubectl config use-context ${AWS_USER}
+  - kubectl config set-cluster ${AWS_CLUSTER} --certificate-authority=${AWS_CERT_AUTHORITY} --server=${AWS_CLUSTER_SERVER}
   - kubectl config view
-  - kubectl get nodes
+  #- kubectl get nodes
   #- aws --region us-east-2 eks update-kubeconfig --name ${AWS_CLUSTER}
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t thandotettey/react-test -f ./client/Dockerfile.dev ./client

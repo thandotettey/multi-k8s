@@ -16,7 +16,7 @@ before_install:
   - chmod +x ./kubectl
   - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
   - kubectl version --short --client
-  - aws --region us-east-2 eks update-kubeconfig --name ${AWS_USER}
+  - aws --region us-east-2 eks update-kubeconfig --name ${AWS_CLUSTER}
   # - kubectl config set-context ${AWS_USER} --cluster=${AWS_CLUSTER} --user=${AWS_USER}
   - kubectl config use-context ${AWS_USER}
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin

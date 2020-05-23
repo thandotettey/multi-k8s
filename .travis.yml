@@ -18,6 +18,7 @@ before_install:
   - kubectl version --short --client
   - kubectl config set-context ${AWS_USER} --cluster=${AWS_CLUSTER} --user=${AWS_USER}
   - kubectl config use-context ${AWS_USER}
+  - kubectl config view
   - kubectl get nodes
   #- aws --region us-east-2 eks update-kubeconfig --name ${AWS_CLUSTER}
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin

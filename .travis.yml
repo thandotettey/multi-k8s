@@ -16,8 +16,8 @@ before_install:
   - chmod +x ./kubectl
   - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
   - kubectl version --short --client
-  - kubectl config set-context ${AWS_CLUSTER} --cluster=${AWS_CLUSTER} --user=${AWS_USER}
-  - kubectl config use-context ${AWS_CLUSTER}
+  - kubectl config set-context ${AWS_USER} --cluster=${AWS_CLUSTER} --user=${AWS_USER}
+  - kubectl config use-context ${AWS_USER}
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t thandotettey/react-test -f ./client/Dockerfile.dev ./client
 

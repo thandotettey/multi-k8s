@@ -22,7 +22,7 @@ before_install:
   #- kubectl config view
   #- kubectl get nodes
   - aws eks list-clusters
-  - aws eks --region us-east-2  update-kubeconfig --name attractive-gopher-1590240607.us-east-2.eksctl.io
+  - aws eks --region us-east-2  update-kubeconfig --name attractive-gopher-15902406072
   - kubectl get svc
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t thandotettey/react-test -f ./client/Dockerfile.dev ./client

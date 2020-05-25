@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: kgotso-pula-nala-dev-tls
+spec:
+  secretName: kgotso-pula-nala-dev
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: kgosto-pula-nala.dev
+  dnsNames:
+    - kgosto-pula-nala.dev
+    - www.kgosto-pula-nala.dev
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - kgosto-pula-nala.dev
+          - www.kgosto-pula-nala.dev
